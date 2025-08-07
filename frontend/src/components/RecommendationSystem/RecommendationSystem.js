@@ -64,7 +64,7 @@ const RecommendationSystem = () => {
   const fetchRecommendations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/student/recommendations', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/student/recommendations', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -141,7 +141,7 @@ Format each recommendation with:
 
 Focus on building upon strengths while addressing improvement areas.`;
 
-      const response = await fetch('http://localhost:5000/api/chatbot/test', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -1,12 +1,13 @@
 # AI/ML Algorithms Demo Collection
 
-
 ## 📁 Files
 
 ### `nlp_algorithms.py`
+
 Contains implementations of fundamental NLP algorithms:
 
 #### Classes & Features:
+
 - **TextPreprocessor**: Text cleaning, tokenization, stop word removal, n-gram generation
 - **NaiveBayesClassifier**: Simple text classification using Naive Bayes with Laplace smoothing
 - **TFIDFVectorizer**: Term Frequency-Inverse Document Frequency vectorization
@@ -14,15 +15,18 @@ Contains implementations of fundamental NLP algorithms:
 - **TextSimilarity**: Jaccard and Cosine similarity calculations
 
 #### Example Usage:
+
 ```python
 # Run the demonstration
 python nlp_algorithms.py
 ```
 
 ### `ml_algorithms.py`
+
 Contains implementations of fundamental ML algorithms:
 
 #### Classes & Features:
+
 - **LinearRegression**: Simple linear regression with gradient descent
 - **KNearestNeighbors**: K-NN classifier with Euclidean distance
 - **DecisionTreeClassifier**: ID3-based decision tree with Gini impurity
@@ -30,6 +34,7 @@ Contains implementations of fundamental ML algorithms:
 - **NeuralNetwork**: Multi-layer perceptron with backpropagation
 
 #### Example Usage:
+
 ```python
 # Run the demonstration
 python ml_algorithms.py
@@ -38,6 +43,7 @@ python ml_algorithms.py
 ## 🎯 Purpose
 
 These implementations are designed to:
+
 - **Educate**: Help understand how core AI/ML algorithms work internally
 - **Demonstrate**: Show step-by-step algorithm implementations
 - **Experiment**: Provide a playground for testing concepts
@@ -46,6 +52,7 @@ These implementations are designed to:
 ## 🔧 Key Features
 
 ### NLP Algorithms
+
 - ✅ Text preprocessing and tokenization
 - ✅ Naive Bayes classification with smoothing
 - ✅ TF-IDF vectorization from scratch
@@ -54,6 +61,7 @@ These implementations are designed to:
 - ✅ N-gram generation
 
 ### ML Algorithms
+
 - ✅ Linear regression with gradient descent
 - ✅ K-Nearest Neighbors classification
 - ✅ Decision tree with ID3 algorithm
@@ -64,6 +72,7 @@ These implementations are designed to:
 ## 📊 Sample Outputs
 
 ### NLP Demo Output:
+
 ```
 🔤 NLP Algorithms Demonstration
 ==================================================
@@ -87,6 +96,7 @@ Sentiment: {'sentiment': 'positive', 'confidence': 1.0, 'positive_score': 3.5, '
 ```
 
 ### ML Demo Output:
+
 ```
 🤖 Machine Learning Algorithms Demonstration
 ============================================================
@@ -110,10 +120,12 @@ Centroids: [[1.33, 1.33], [6.33, 6.33]]
 ## 🚀 Running the Demos
 
 ### Prerequisites
+
 - Python 3.7+
 - No external dependencies required (pure Python implementations)
 
 ### Execute Demonstrations
+
 ```bash
 # Navigate to algorithms directory
 cd backend/algorithms
@@ -128,6 +140,7 @@ python ml_algorithms.py
 ## 📚 Educational Value
 
 ### Concepts Covered:
+
 - **Supervised Learning**: Classification and Regression
 - **Unsupervised Learning**: Clustering
 - **Neural Networks**: Forward/Backward propagation
@@ -137,6 +150,7 @@ python ml_algorithms.py
 - **Information Theory**: Entropy, Gini Impurity
 
 ### Learning Outcomes:
+
 - Understand algorithm internals without library abstractions
 - See step-by-step implementations
 - Grasp mathematical foundations
@@ -148,7 +162,7 @@ python ml_algorithms.py
 While these algorithms are **standalone** and not integrated with the main Topper AI Mentor application, they demonstrate the types of AI/ML concepts that power modern educational platforms:
 
 - **Text Classification** → Course content categorization
-- **Sentiment Analysis** → Student feedback analysis  
+- **Sentiment Analysis** → Student feedback analysis
 - **Clustering** → Grouping similar learning patterns
 - **Regression** → Performance prediction
 - **Neural Networks** → Complex pattern recognition
@@ -164,6 +178,7 @@ While these algorithms are **standalone** and not integrated with the main Toppe
 ## 🎓 Next Steps
 
 After exploring these implementations:
+
 1. Compare with library implementations (scikit-learn, NLTK, spaCy)
 2. Experiment with different datasets
 3. Modify algorithms to understand their behavior

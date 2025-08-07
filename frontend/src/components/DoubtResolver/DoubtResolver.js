@@ -62,7 +62,7 @@ Please provide:
 Make your response educational, encouraging, and easy to understand.
       `;
 
-      const response = await fetch('http://localhost:5000/api/chatbot/test', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -3,6 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Send, Bot, User, Loader, Brain, Lightbulb, BookOpen } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { API_ENDPOINTS } from '../../config/api';
 
 const ChatInterface = () => {
   const { user } = useAuth();
@@ -52,7 +53,7 @@ const ChatInterface = () => {
     setIsTyping(true);
 
     try {
-      const response = await axios.post('/api/chatbot/test', {
+      const response = await axios.post(API_ENDPOINTS.CHATBOT.TEST, {
         message: currentMessage,
         domain: selectedDomain
       });

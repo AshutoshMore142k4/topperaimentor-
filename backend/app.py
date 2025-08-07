@@ -26,7 +26,11 @@ app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'your-secret-key-chan
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=24)
 
 # Initialize extensions
-CORS(app)
+CORS(app, origins=[
+    "http://localhost:3000",
+    "https://frontend-azkl3as6m-ash142k4s-projects.vercel.app",
+    "https://*.vercel.app"
+])
 jwt = JWTManager(app)
 
 # Initialize database

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 
 const Deadlines = () => {
-  const { user } = useAuth();
   const [deadlines, setDeadlines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -42,7 +40,7 @@ const Deadlines = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/deadlines', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/deadlines', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -87,7 +85,7 @@ const Deadlines = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/deadlines', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/deadlines', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -166,7 +164,7 @@ Please provide:
 
 Be specific and actionable.`;
 
-      const response = await fetch('http://localhost:5000/api/chatbot/test', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

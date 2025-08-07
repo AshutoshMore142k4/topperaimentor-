@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 
 const Learning = () => {
-  const { user } = useAuth();
   const [learningData, setLearningData] = useState({
     progress: {},
     recommendations: [],
@@ -29,7 +27,7 @@ const Learning = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/student/learning-progress', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/student/learning-progress', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -52,7 +50,7 @@ const Learning = () => {
     try {
       // Get user's learning statistics first
       const token = localStorage.getItem('token');
-      const statsResponse = await fetch('http://localhost:5000/api/chatbot/statistics', {
+      const statsResponse = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/statistics', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -81,7 +79,7 @@ Please provide:
 
 Format as a structured learning plan.`;
 
-      const response = await fetch('http://localhost:5000/api/chatbot/test', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -112,7 +110,6 @@ Format as a structured learning plan.`;
     const lines = aiText.split('\n').filter(line => line.trim());
     const recommendations = [];
     
-    let currentSection = '';
     let currentRec = { title: '', description: '', type: 'general' };
 
     lines.forEach(line => {
@@ -145,11 +142,6 @@ Format as a structured learning plan.`;
     if (confidence >= 0.8) return 'bg-green-500';
     if (confidence >= 0.6) return 'bg-yellow-500';
     return 'bg-red-500';
-  };
-
-  const getDomainColor = (domain) => {
-    const domainConfig = domains.find(d => d.value === domain);
-    return domainConfig ? domainConfig.color : 'gray';
   };
 
   if (loading) {

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 
 const Progress = () => {
-  const { user } = useAuth();
   const [progressData, setProgressData] = useState({
     overallProgress: {},
     domainProgress: [],
@@ -16,57 +14,54 @@ const Progress = () => {
   const [generatingAnalysis, setGeneratingAnalysis] = useState(false);
 
   useEffect(() => {
+    const fetchProgressData = async () => {
+      try {
+        setLoading(true);
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+          setLoading(false);
+          return;
+        }
+
+        // Fetch learning progress data
+        const progressResponse = await fetch('https://topperaimentor-production.up.railway.app/api/student/learning-progress', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        // Fetch statistics data  
+        const statsResponse = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/statistics', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (progressResponse.ok && statsResponse.ok) {
+          const progressData = await progressResponse.json();
+          const statsData = await statsResponse.json();
+          
+          // Combine and process the data
+          setProgressData({
+            overallProgress: progressData.overall || {},
+            domainProgress: progressData.domains || [],
+            weeklyActivity: statsData.weekly || [],
+            achievements: progressData.achievements || [],
+            trends: statsData.trends || []
+          });
+        }
+      } catch (error) {
+        console.error('Failed to fetch progress data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProgressData();
   }, [timeframe]);
-
-  const fetchProgressData = async () => {
-    try {
-      setLoading(true);
-      const token = localStorage.getItem('token');
-      
-      // Fetch learning progress
-      const progressResponse = await fetch('http://localhost:5000/api/student/learning-progress', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      // Fetch chat statistics
-      const statsResponse = await fetch('http://localhost:5000/api/chatbot/statistics', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      let progressData = {};
-      let statsData = {};
-
-      if (progressResponse.ok) {
-        const data = await progressResponse.json();
-        progressData = data.data;
-      }
-
-      if (statsResponse.ok) {
-        const data = await statsResponse.json();
-        statsData = data.data;
-      }
-
-      setProgressData({
-        overallProgress: progressData.overall_stats || {},
-        domainProgress: progressData.domain_progress || [],
-        chatStats: statsData,
-        achievements: generateAchievements(statsData, progressData),
-        trends: calculateTrends(statsData, progressData)
-      });
-
-    } catch (error) {
-      console.error('Error fetching progress data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const generateAchievements = (stats, progress) => {
     const achievements = [];
@@ -156,7 +151,7 @@ Please provide:
 
 Provide actionable insights and encouragement.`;
 
-      const response = await fetch('http://localhost:5000/api/chatbot/test', {
+      const response = await fetch('https://topperaimentor-production.up.railway.app/api/chatbot/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
